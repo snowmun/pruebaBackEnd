@@ -5,20 +5,29 @@ function exercise0() {
     return clients?.map(client =>client.id);
 }
 function exercise1() {
-   const ordenCliente= clients.sort((uncliente, otrocliente) => uncliente.rut.localeCompare(otrocliente.rut));
-   return  soloId = ordenCliente.map(cliente => cliente.id)
+    let obj_banck = [];
+
+    const ordenCliente= clients.sort((uncliente, otrocliente) => uncliente.rut.localeCompare(otrocliente.rut));
+    const soloId = ordenCliente.map(cliente => cliente.id);
+    obj_banck = soloId
+    return obj_banck
 }
 
 function exercise2() {
     resultado = [];
     accounts.forEach(function (a) {  
-       if (!this[a.clientId]) {
-            this[a.clientId] = { id: a.clientId, balance: 0 };
-            resultado.push(this[a.clientId]);
+        if (!this[a.clientId]) {
+            clients.map(e => {
+                if(a.clientId == e.id){
+                    this[a.clientId] = { Nombre: e.name, balance: 0 };
+                    resultado.push(this[a.clientId]);
+                }
+           })
         }
-      this[a.clientId].balance += a.balance;
+        this[a.clientId].balance += a.balance;
     }, []);
-    return resultado
+    const ordenResultado = this.resultado.sort(((a, b) => b.balance - a.balance));
+    return ordenResultado
 }
 
 function exercise3() {
@@ -44,23 +53,25 @@ function exercise4() {
     accounts.map(ac =>{
             banks.map(ba =>{
                     if(ba.id==1 && ac.balance > 25000){
-                        this[ba.id]={banco: ba.name , saldo:ac.balance};
+                        this[ba.id]={ saldo:ac.balance};
                         resultado.push(this[ba.id]);
                     }
             })
     }, []);
-    return resultado
+    const resultadoOrden = this.resultado.sort(((a, b) => b.saldo - a.saldo));
+    return resultadoOrden
 }
 function exercise5() {
     resultado = [];
     accounts.forEach(function (a) {  
-       if (!this[a.clientId]) {
-            this[a.clientId] = { bankId: a.bankId, balance: 0 };
-            resultado.push(this[a.clientId]);
+       if (!this[a.bankId]) {
+            this[a.bankId] = { bankId: a.bankId, balance: 0 };
+            resultado.push(this[a.bankId]);
         }
-      this[a.clientId].balance += a.balance;
+      this[a.bankId].balance += a.balance;
     }, []);
-    return resultado
+    const resultadoOrden = this.resultado.sort(((a, b) => a.balance - b.balance));
+    return resultadoOrden
 }
 function exercise6() {
 
@@ -123,4 +134,4 @@ console.log("Ejercicio 4 --> ", exercise4() || "Ejercicio no resuelto");
 console.log("Ejercicio 5 --> ", exercise5() || "Ejercicio no resuelto");
 console.log("Ejercicio 6 --> ", exercise6() || "Ejercicio no resuelto");
 console.log("Ejercicio 7 --> ", exercise7() || "Ejercicio no resuelto");
-process.exit();
+process.exit();q
